@@ -1,26 +1,29 @@
 
+.navbarHeader {
+      background-color: rgb(65, 63, 63);
+      height: 100px;
+      align-items: center;
+}
+
 .navbarContainer {
     display: flex;
     position: relative;
-    left: 300px;
+    left: 335px;
     gap: 30px;
+    top: -32px;
     align-items: center;
-  }
-  
-  .loginButton .signupButton {
-    margin-left: 20px;
-  
-    right: 20px;
   }
 
   .titleTyS {
     position: relative;
     left: 70px;
-    top: -30px;
+    top: -60px;
     
   }
 
   .logoutButton {
+    position: relative;
+    top: -31px;
     background: floralwhite;
     border: 2px solid var(--primary);
     color: var(--primary);

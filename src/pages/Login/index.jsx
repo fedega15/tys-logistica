@@ -1,14 +1,16 @@
 import { useState } from "react"
 import styles from "./login.module.css"
+import { useLogin } from "../../hooks/useLogin"
 
 const Login = () => {
     const [email, setEmail] = useState ('')
     const [password, setPassword] = useState ('')
+    const { login, error, isLoading} = useLogin ()
 
     const handleSubmit = async (e) => {
         e.preventDefault()
 
-        console.log(email, password)
+        await login (email, password) // depende de si isloading es true o false Y UN ERROR SI ES FALSE      
     }
 
     return (
@@ -17,7 +19,7 @@ const Login = () => {
 
             <label className={styles.loginLabel} >Email:</label>
             <input className={styles.loginInput}
-                type='email'
+                type='text'
                 onChange={(e) => setEmail(e.target.value)}
                 value={email}>
             </input>
@@ -29,7 +31,8 @@ const Login = () => {
                 value={password}>
             </input>
 
-            <button className={styles.loginButton}>Iniciar Sesion</button>
+            <button disabled={isLoading} className={styles.loginButton}>Iniciar Sesion</button>
+            {error && <div className={styles.error}>{error}</div>}
         </form>
     )
 }

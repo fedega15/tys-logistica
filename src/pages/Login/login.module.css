@@ -29,7 +29,9 @@
 
 /* auth forms */
 
- .formLogin {
+ .formLogin { 
+  top: 100px;
+  position:relative;
   max-width: 400px;
   margin: 40px auto;
   padding: 20px;

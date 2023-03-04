@@ -26,14 +26,15 @@ header .container {
 }
 
 header a {
-  color:#333;
+  color:#c5baba;
   text-decoration: none;
 }
 
 .pages {
   background-image: "url(/image.png)";
-  max-width: 1400px;
+  max-width: 1350px;
   padding: 20px;
+  position: relative;
   margin: 0 auto;
   }
 /* homepage */
