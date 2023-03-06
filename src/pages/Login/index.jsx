@@ -1,39 +1,48 @@
-import { useState } from "react"
-import styles from "./login.module.css"
-import { useLogin } from "../../hooks/useLogin"
+
+import React from 'react';
+import { Formik, Field, Form } from 'formik';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Login = () => {
-    const [email, setEmail] = useState ('')
-    const [password, setPassword] = useState ('')
-    const { login, error, isLoading} = useLogin ()
-
-    const handleSubmit = async (e) => {
-        e.preventDefault()
-
-        await login (email, password) // depende de si isloading es true o false Y UN ERROR SI ES FALSE      
-    }
-
     return (
-        <form className={styles.formLogin} onSubmit={handleSubmit}> 
-            <h3>Iniciar Sesion</h3>
+        <Formik
+            initialValues={{ name: '', email: '', subject: '', content: '' }}
+            onSubmit={(values, { setSubmitting }) => {
+                setTimeout(() => {
+                    alert(JSON.stringify(values, null, 2));
+                    setSubmitting(false);
+                }, 1000);
+            }}
+        >
+            {({ isSubmitting }) => (
+                <Form>
+                    <div className="form-group">
+                        <label htmlFor="name">Name</label>
+                        <Field name="name" className="form-control" type="text" />
+                    </div>
 
-            <label className={styles.loginLabel} >Email:</label>
-            <input className={styles.loginInput}
-                type='text'
-                onChange={(e) => setEmail(e.target.value)}
-                value={email}>
-            </input>
+                    <div className="form-group">
+                        <label htmlFor="email">Email Address</label>
+                        <Field name="email" className="form-control" type="email" />
+                    </div>
 
-            <label >Contraseña:</label>
-            <input 
-                type='password'
-                onChange={(e) => setPassword(e.target.value)}
-                value={password}>
-            </input>
+                    <div className="form-group">
+                        <label htmlFor="subject">Subject</label>
+                        <Field name="subject" className="form-control" type="text" />
+                    </div>
 
-            <button disabled={isLoading} className={styles.loginButton}>Iniciar Sesion</button>
-            {error && <div className={styles.error}>{error}</div>}
-        </form>
-    )
-}
-export default Login
+                    <div className="form-group">
+                        <label htmlFor="content">Content</label>
+                        <Field name="content" className="form-control" as="textarea" />
+                    </div>
+                    <div className="form-group">
+                        <button type="submit" className="btn btn-primary" disabled={isSubmitting}>{isSubmitting ? "Please wait..." : "Submit"}</button>
+                    </div>
+
+                </Form>
+            )}
+        </Formik>
+    );
+};
+
+export default Login;
