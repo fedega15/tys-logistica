@@ -6,7 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 const Login = () => {
     return (
         <Formik
-            initialValues={{ name: '', email: '', subject: '', content: '' }}
+            initialValues={{ email: '', password: '' }}
             onSubmit={(values, { setSubmitting }) => {
                 setTimeout(() => {
                     alert(JSON.stringify(values, null, 2));
@@ -15,32 +15,31 @@ const Login = () => {
             }}
         >
             {({ isSubmitting }) => (
+                 <div className="container">
+            <div className="col-md-12 mt-5">
                 <Form>
-                    <div className="form-group">
-                        <label htmlFor="name">Name</label>
-                        <Field name="name" className="form-control" type="text" />
-                    </div>
+                    <h4 className="mb-3">Iniciar sesion</h4>
+                        <div className="row">
 
-                    <div className="form-group">
-                        <label htmlFor="email">Email Address</label>
-                        <Field name="email" className="form-control" type="email" />
-                    </div>
+                            <div className="form-group col-md-6 mb-3">
+                                <label htmlFor="email">Email</label>
+                                <Field type="email" className="form-control" id="email" name="email" placeholder="tys@ejemplo.com"/>
+                            </div>
+                        </div>
 
+                    
+                        <div className="form-group">
+                            <label htmlFor="password">Contraseña</label>
+                            <Field name="password" className="form-control" type="password" placeholder="************"/>
+                         </div>
+                         <br />
                     <div className="form-group">
-                        <label htmlFor="subject">Subject</label>
-                        <Field name="subject" className="form-control" type="text" />
-                    </div>
-
-                    <div className="form-group">
-                        <label htmlFor="content">Content</label>
-                        <Field name="content" className="form-control" as="textarea" />
-                    </div>
-
-                    <div className="form-group">
-                        <button type="submit" className="btn btn-primary" disabled={isSubmitting}>{isSubmitting ? "Please wait..." : "Submit"}</button>
+                        <button type="submit" className="btn btn-primary" disabled={isSubmitting}>{isSubmitting ? "Porfavor espere..." : "Enviar"}</button>
                     </div>
 
                 </Form>
+            </div>
+         </div>
             )}
         </Formik>
     );
