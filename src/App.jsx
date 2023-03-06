@@ -1,16 +1,16 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom"
-import Navbar2 from "./components/Navbar2";
+import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
-import bgImage from "./4.jpg"
+
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
    
   
-            <Navbar2/>
+            <Navbar/>
           <Routes>
             <Route 
               path="/"
