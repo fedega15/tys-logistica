@@ -1,6 +1,5 @@
 import React from 'react' 
 import styles from  "./home.module.css"
-import { dataCamiones } from "./const"
 import {useEffect, useState} from 'react'
 import axios from 'axios'
 
@@ -24,6 +23,7 @@ const Home = () => {
       try {
           const api_response = await Axios.post(url)
           console.log (api_response.data)
+          console.log (api_response)
           setCamiones(api_response.data) // agregue el data y cambie el console log  por produtos
       } catch (error) {
           console.log(`Error en peticion /vehiculos_listar: ${error}`)

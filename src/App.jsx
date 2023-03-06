@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom"
-import Navbar from "./components/Navbar";
+import Navbar2 from "./components/Navbar2";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
@@ -8,15 +8,13 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <Navbar/>
-        <div className="pages"  style={{
-          backgroundImage: `url(${bgImage})`,
-          backgroundSize: "cover",
-          height: "300vh"}}>
+   
+  
+            <Navbar2/>
           <Routes>
             <Route 
               path="/"
-              element={<Home/>}  />
+              element={<Home/>} />
 
               <Route 
               path="/login"
@@ -26,7 +24,7 @@ function App() {
               path="/signup"
               element={<Signup/>}  />
           </Routes>
-        </div>
+        
       
       </BrowserRouter>
     </div>

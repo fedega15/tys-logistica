@@ -4,7 +4,7 @@ export const useLogout = () => {
     // hacemos el log out sin enviar request al backend.
     // eliminando el token del local storage
 
-    const logout = () => {
+    const Logout = () => {
 
         const { dispatch } = useAuthContext()
         //remuevo el user del storage
@@ -14,5 +14,5 @@ export const useLogout = () => {
         dispatch ({type: 'LOGOUT'})
     }
     
-    return  {logout} // ahora ver como usarlo en la app(boton en nav)
+    return  {Logout} // ahora ver como usarlo en la app(boton en nav)
 }
