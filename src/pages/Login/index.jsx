@@ -35,7 +35,7 @@ const Login = () => {
                         <label htmlFor="content">Content</label>
                         <Field name="content" className="form-control" as="textarea" />
                     </div>
-                    
+
                     <div className="form-group">
                         <button type="submit" className="btn btn-primary" disabled={isSubmitting}>{isSubmitting ? "Please wait..." : "Submit"}</button>
                     </div>
