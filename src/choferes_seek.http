@@ -1,5 +1,0 @@
-POST http://webports.duckdns.org:5000/choferes_listar
-Content-Type: application/json
-Authorization: token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvIjoiZ3VzdGF2byIsImV4cCI6MTY3Nzc5ODk4MSwiaWF0IjoxNjc3NTk1ODUzfQ.u7Q_phEQv1R8fJ5UFZGWsab1cRiAGp91zd10AriIX6c
-
-

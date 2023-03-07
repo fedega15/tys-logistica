@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Login = () => {
     return (
+        <div className='container'>
         <Formik
             initialValues={{ email: '', password: '' }}
             onSubmit={(values, { setSubmitting }) => {
@@ -15,9 +16,9 @@ const Login = () => {
             }}
         >
             {({ isSubmitting }) => (
-                 <div className="container">
-            <div className="col-md-12 mt-5">
-                <Form>
+                 <div className="container ">
+            <div className="col-md-11 mt-5">
+                <Form className='position-relative  '>
                     <h4 className="mb-3">Iniciar sesion</h4>
                         <div className="row">
                             <div className="form-group col-md-6 mb-3">
@@ -34,7 +35,7 @@ const Login = () => {
                         </div>
                          <br />
                     <div className="form-group">
-                        <button type="submit" className="btn btn-primary" disabled={isSubmitting}>{isSubmitting ? "Porfavor espere..." : "Enviar"}</button>
+                        <button type="submit" className="btn btn-secondary" disabled={isSubmitting}>{isSubmitting ? "Porfavor espere..." : "Enviar"}</button>
                     </div>
 
                 </Form>
@@ -42,6 +43,7 @@ const Login = () => {
          </div>
             )}
         </Formik>
+        </div>
     );
 };
 

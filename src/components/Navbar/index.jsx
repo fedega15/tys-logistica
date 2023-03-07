@@ -1,30 +1,47 @@
-import React, {useState} from 'react'
-import  './navbar.css'
-import { Link } from 'react-router-dom'
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import Offcanvas from 'react-bootstrap/Offcanvas';
 import logopng from "./logo.png"
 
-const Navbar = () => {
-  
-  const [isOpen, setIsOpen] = useState(false)
-
+const Navbar1 = () => {
   return (
-    <div className='navbar' >   
-      <div className='nav_logo'><img src={logopng} style={{position: 'relative',top: '-5px', width: '48px', height: '48px', margin: '0px 0px' }} alt="" /> logistycaTyS</div> 
-      
-      <div className={`nav_items ${isOpen && "open"}`}>   
-        <Link className='loginButton' to='/login'>INICIAR SESION</Link>
-        <Link className='loginButton' to='/'>VEHICULOS</Link>
-        <Link className='logoutButton' to='/signup'>AGREGA +</Link>
-      </div>
-      
-      <div className={`nav_toggle ${isOpen && "open"}`} onClick={() => setIsOpen(!isOpen)}> 
-            <span></span>
-            <span></span>
-            <span></span>
-       </div>
-       
-    </div>
-  )
+    <>
+      {[false, ].map((expand) => (
+        <Navbar key={expand} bg="light"  expand={expand} >
+          <Container fluid style={{ height:"70px"}}>
+
+          <Navbar.Brand className='d-flex justify-content-center' style={{height:"60px"}} href="#"><br/> 
+              <img src={logopng} style={{ marginRight : '10px' ,width: '48px', height: '48px',  }} alt="" />
+              <h1 >Logistica TyS</h1>
+            </Navbar.Brand>
+            <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
+            <Navbar.Offcanvas
+              id={`offcanvasNavbar-expand-${expand}`}
+              aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
+              placement="end"
+            >
+              <Offcanvas.Header closeButton>
+                <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
+                  Logistica TyS
+                </Offcanvas.Title>
+              </Offcanvas.Header>
+              <Offcanvas.Body>
+                <Nav className="justify-content-end flex-grow-1 pe-3">
+                  <Nav.Link href="/login">Inicia sesion</Nav.Link>
+                  <Nav.Link href="/">Lista camiones</Nav.Link>
+                  <Nav.Link href="/AgregarCamiones">Agrega tu camion</Nav.Link>
+                  
+                  
+                
+                </Nav>
+              </Offcanvas.Body>
+            </Navbar.Offcanvas>
+          </Container>
+        </Navbar>
+      ))}
+    </>
+  );
 }
 
-export default Navbar
+export default Navbar1;

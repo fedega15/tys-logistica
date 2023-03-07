@@ -2,7 +2,7 @@ import React from 'react'
 import {Formik, Field, Form} from 'formik'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
-const Signup = () => {
+const AgregarCamiones = () => {
   return (<Formik
     initialValues={{ patente: '', NumChasis: '', NumMotor: '', NumMovil: '', Tipo:''}}
     onSubmit={(values, { setSubmitting }) => {
@@ -64,7 +64,7 @@ const Signup = () => {
           </div>
 
           
-            <button className="btn btn-primary btn-lg btn-block" type="submit" disabled={isSubmitting}>{isSubmitting ? "Porfavor espere..." : "Enviar"}</button>
+            <button className="btn btn-secondary btn-lg btn-block" type="submit" disabled={isSubmitting}>{isSubmitting ? "Porfavor espere..." : "Enviar"}</button>
         </Form>
       </div>
 
@@ -74,4 +74,4 @@ const Signup = () => {
  
   )
 }
-export default Signup
+export default AgregarCamiones
