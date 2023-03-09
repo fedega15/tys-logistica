@@ -1,7 +1,37 @@
 import Accordion from 'react-bootstrap/Accordion';
+import { useState, useEffect} from 'react'
+import { getVehicles } from '../../api/Model/Vehicle';
+
 
 const  ListaCamiones1 = () => {
+  
+  // const [vehicles, setVehicles] = useState([])
+  const [Loading, setLoading] = useState (false)
+  const [error, setError] = useState ('')
+
+  const handleFetchVehicles = async() => {
+    setLoading(true)
+  try {
+      const api_response = await getVehicles()
+      // setVehicles(...api_response)
+      console.log(api_response)
+    } catch (error) {
+      console.log(error)
+     // setError ('le erramo federrrrico')
+    } 
+    finally {
+      setLoading(false)
+    }
+  }
+
+  useEffect (() => {
+    handleFetchVehicles()
+  },[])
+  if(Loading){return (<>Loading...</>)}
+  if(error){return (<>{error}</>)}
+
   return (
+
     <Accordion defaultActiveKey={['0']} alwaysOpen>
       <Accordion.Item eventKey="0">
         <Accordion.Header>VEHICULO 1</Accordion.Header>
