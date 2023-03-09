@@ -1,11 +1,10 @@
 import Accordion from 'react-bootstrap/Accordion';
 import { useState, useEffect} from 'react'
 import { getVehicles } from '../../api/Model/Vehicle';
-
-
+import {handleFetchError} from '../../utils/errorhandler'
 const  ListaCamiones1 = () => {
   
-  // const [vehicles, setVehicles] = useState([])
+  const [vehicles, setVehicles] = useState([])
   const [Loading, setLoading] = useState (false)
   const [error, setError] = useState ('')
 
@@ -13,11 +12,15 @@ const  ListaCamiones1 = () => {
     setLoading(true)
   try {
       const api_response = await getVehicles()
-      // setVehicles(...api_response)
-      console.log(api_response)
+      if(api_response.status === 200){
+        const {data} = api_response 
+        setVehicles(...data)      
+        console.log(data)
+      }
+      setVehicles() 
     } catch (error) {
-      console.log(error)
-     // setError ('le erramo federrrrico')
+      const strError = handleFetchError(error)
+      setError (strError)
     } 
     finally {
       setLoading(false)
@@ -29,7 +32,6 @@ const  ListaCamiones1 = () => {
   },[])
   if(Loading){return (<>Loading...</>)}
   if(error){return (<>{error}</>)}
-
   return (
 
     <Accordion defaultActiveKey={['0']} alwaysOpen>
