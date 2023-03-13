@@ -12,7 +12,7 @@ const Navbar1 = () => {
           <Container fluid style={{ height:"70px"}}>
 
           <Navbar.Brand className='d-flex justify-content-center' style={{height:"60px"}} href="#"><br/> 
-              <img src={logopng} style={{ marginRight : '10px' ,width: '48px', height: '48px',  }} alt="" />
+              <img src={logopng} style={{ marginRight : '10px' ,width: '47px', height: '48px',  }} alt="" />
               <h1 >Logistica TyS</h1>
             </Navbar.Brand>
             <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
