@@ -3,8 +3,7 @@ import { Link } from 'react-router-dom';
 
 const Breadcrumbs = () => {
   return (
-    <Breadcrumb class=' d-flex justify-content-start bg-secondary text-white' style= {{height: '40px', paddingLeft: "10px"}}>
-      
+    <Breadcrumb class='d-flex justify-content-start bg-secondary text-white' style= {{height: '42px', paddingLeft: "10px"}}>
       <Link to="/" style={{textDecoration:"none"}}>
         <p class="text-light">Home / </p>
       </Link>
