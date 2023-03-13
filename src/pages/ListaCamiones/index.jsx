@@ -31,11 +31,13 @@ const  ListaCamiones1 = () => {
   },[])
   if(Loading){return (<>Loading..</>)}
   if(error){return (<>{error}</>)}
+
+  const handleClick = (aux) => {console.log(aux)}
   return (
     <Accordion defaultActiveKey={['0']} 
     alwaysOpen>
        {vehicles.map((vehicle,index)  =>( 
-          <Accordion.Item eventKey={index} key={index}>
+          <Accordion.Item eventKey={index} key={index} onClick ={() =>handleClick('index')}>
             <Accordion.Header>VEHICULO {vehicle.id}</Accordion.Header>
             <Accordion.Body>
               <p>{vehicle.numChasis}</p>
