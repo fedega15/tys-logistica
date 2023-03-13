@@ -1,33 +1,47 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import styles from "./navbar.module.css"
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import Offcanvas from 'react-bootstrap/Offcanvas';
 import logopng from "./logo.png"
-import { useLogout } from '../../hooks/useLogout'
-const Navbar = () => {
 
-  const { logout } = useLogout()
-  const handleClick = () => {
-      logout () //elimina el item user de localstorage el token y el global state.
-  }
-
+const Navbar1 = () => {
   return (
-    <header>
-        <div className='container'>
-            <Link to='/'>
-              <img src={logopng} style={{position: 'relative',top: '45px', width: '48px', height: '48px', margin: '0px 0px' }} />
-                <h1 className={styles.titleTyS}>TyS Logistica</h1>
-            </Link>
-            <nav className={styles.navbarContainer}>
-                    <Link className={styles.loginButton} to='/login'>Iniciar sesion</Link>
-                    <Link className={styles.signupButton} to='/signup'>Registrarse </Link>
-            </nav>
-            <div>
-              <button className={styles.logoutButton} onClick={handleClick}>Cerrar sesion</button>
-            </div>
-        </div>
-    </header>
-    
-  )
+    <>
+      {[false, ].map((expand) => (
+        <Navbar key={expand} bg="light"  expand={expand} >
+          <Container fluid style={{ height:"70px"}}>
+
+          <Navbar.Brand className='d-flex justify-content-center' style={{height:"60px"}} href="#"><br/> 
+              <img src={logopng} style={{ marginRight : '10px' ,width: '47px', height: '48px',  }} alt="" />
+              <h1 >Logistica TyS</h1>
+            </Navbar.Brand>
+            <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
+            <Navbar.Offcanvas
+              id={`offcanvasNavbar-expand-${expand}`}
+              aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
+              placement="end"
+            >
+              <Offcanvas.Header closeButton>
+                <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
+                  Logistica TyS
+                </Offcanvas.Title>
+              </Offcanvas.Header>
+              <Offcanvas.Body>
+                <Nav className="justify-content-end flex-grow-1 pe-3">
+                  <Nav.Link href="/login">Inicia sesion</Nav.Link>
+                  <Nav.Link href="/">Lista camiones</Nav.Link>
+                  <Nav.Link href="/AgregarCamiones">Agrega tu camion</Nav.Link>
+                  
+                  
+                
+                </Nav>
+              </Offcanvas.Body>
+            </Navbar.Offcanvas>
+          </Container>
+        </Navbar>
+      ))}
+    </>
+  );
 }
 
-export default Navbar
+export default Navbar1;

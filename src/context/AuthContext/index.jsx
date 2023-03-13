@@ -1,4 +1,5 @@
 import  {createContext , useReducer } from "react"
+import { useEffect } from "react"
 
 export const AuthContext = createContext()
 
@@ -12,10 +13,21 @@ export const authReducer = (state,action) => {
             return state
     }
 }
+
 export const AuthContextProvider = ({ children }) => {
     const  [state, dispatch ] = useReducer(authReducer, {
         user:null
     })
+
+    useEffect(() =>{
+        const user = JSON.parse(localStorage.getItem('usuario')) // chequeamos en el localstorage si existe el token   
+        if (user) {
+            dispatch({ type:'LOGIN', payload: user})
+        }
+        // si hay un value para user lo carga en el local. sino da null.
+    
+    }, [])
+
 console.log('AuthContext state: ',state)
 
 return (

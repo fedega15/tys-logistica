@@ -1,32 +1,33 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom"
+import Breadcrumbs from "./components/Breadcrumbs/breadcrubm";
 import Navbar from "./components/Navbar";
-import Home from "./pages/Home";
 import Login from "./pages/Login";
-import Signup from "./pages/Signup";
-import bgImage from "./4.jpg"
+import AgregarCamiones from "./pages/AgregarCamiones";
+import Titulo from "./components/Titulo";
+import ListaCamiones from "./pages/ListaCamiones";
+
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <Navbar/>
-        <div className="pages"  style={{
-          backgroundImage: `url(${bgImage})`,
-          backgroundSize: "cover",
-          height: "300vh"}}>
+            <Navbar/>
+            <Breadcrumbs />
+            
+            <Titulo/>
           <Routes>
             <Route 
               path="/"
-              element={<Home/>}  />
+              element={<ListaCamiones/>} />
 
               <Route 
               path="/login"
               element={<Login/>}  />
 
               <Route 
-              path="/signup"
-              element={<Signup/>}  />
+              path="/AgregarCamiones"
+              element={<AgregarCamiones/>}  />
           </Routes>
-        </div>
+        
       
       </BrowserRouter>
     </div>

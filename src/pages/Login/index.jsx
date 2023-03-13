@@ -1,36 +1,74 @@
-import { useState } from "react"
-import styles from "./login.module.css"
 
-const Login = () => {
-    const [email, setEmail] = useState ('')
-    const [password, setPassword] = useState ('')
+import React ,   {useState} from 'react';
+import { Formik, Field, Form } from 'formik';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-    const handleSubmit = async (e) => {
-        e.preventDefault()
+    const Login =( ) => {
 
-        console.log(email, password)
-    }
+        const [credenciales, setCredenciales] = useState ({
+            useremail: '',           
+            password: '',  
+        });
 
+        const {useremail, password} = credenciales
+        const handleChange = event => {
+            setCredenciales (credenciales => ({
+                ...credenciales, 
+                [event.target.name]:event.target.value,
+            }))    
+         } ;
+         
     return (
-        <form className={styles.formLogin} onSubmit={handleSubmit}> 
-            <h3>Iniciar Sesion</h3>
+        <div className='container'>
+        <Formik > 
+                 <div className="container ">
+                    
+            <div className="col-md-11 mt-5">
+                <Form className='position-relative  '>
+                    <h4 className="mb-3">Iniciar sesion</h4>
+                    <div className="row">
+                        <div className="form-group col-md-6 mb-3">
+                                <label htmlFor="useremail">Email</label>
+                                <Field 
+                                    type="email" 
+                                    className="form-control" 
+                                    name="usermail" 
+                                    value={useremail} 
+                                    onChange = {handleChange}
+                                    placeholder="tys@ejemplo.com"/>
+                            </div>
+                        </div>
 
-            <label className={styles.loginLabel} >Email:</label>
-            <input className={styles.loginInput}
-                type='email'
-                onChange={(e) => setEmail(e.target.value)}
-                value={email}>
-            </input>
+                        <div className="row">
+                            <div className="form-group col-md-6 mb-3">
+                                <label htmlFor="password">Contraseña</label>
+                                <Field 
+                                    type="password"
+                                    className="form-control" 
+                                    name="password"
+                                    value={password} 
+                                    onChange = {handleChange} 
+                                    placeholder="***********"/>
+                            </div>
+                        </div>
+                         <br />
+                    <div className="form-group">
+                        <button 
+                            type="submit" 
+                            variant="primary" 
+                            className="btn btn-secondary"
+                            disabled= {useremail || !password} >
+                            Enviar
+                        </button>
+                    </div>
 
-            <label >Contraseña:</label>
-            <input 
-                type='password'
-                onChange={(e) => setPassword(e.target.value)}
-                value={password}>
-            </input>
+                </Form>
+            </div>
+         </div>
+         
+        </Formik>
+        </div>
+    )};
 
-            <button className={styles.loginButton}>Iniciar Sesion</button>
-        </form>
-    )
-}
-export default Login
+
+export default Login;
