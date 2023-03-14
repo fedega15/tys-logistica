@@ -14,7 +14,7 @@ const Navbar1 = () => {
         <Navbar key={expand} bg="light"  expand={expand} >
           <Container fluid style={{ height:"70px"}}>
 
-          <Navbar.Brand className='d-flex justify-content-center' style={{height:"60px"}} href="#"><br/> 
+          <Navbar.Brand className='d-flex justify-content-center' style={{height:"60px"}} href="/"><br/> 
               <img src={logopng} style={{ marginRight : '10px' ,width: '47px', height: '48px',  }} alt="" />
               <h1 className='fw-semibold' >Logistica TyS</h1>
             </Navbar.Brand>
