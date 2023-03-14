@@ -1,23 +1,38 @@
-
-import React ,   {useState} from 'react';
+import React , {useState} from 'react';
 import { Formik, Field, Form } from 'formik';
+import { newUser } from '../../api/Model/Login';
+import { validacionSignUp } from '../../utils/validacionSignUp';
 import 'bootstrap/dist/css/bootstrap.min.css';
+
 
     const Login =( ) => {
 
         const [credenciales, setCredenciales] = useState ({
-            useremail: '',           
-            password: '',  
+            useremail: null ,           
+            password: null,  
         });
+        
+        const [errores, setErrores] = useState({
+            'useremail': null,
+            'password': null,
+        })
 
-        const {useremail, password} = credenciales
-        const handleChange = event => {
-            setCredenciales (credenciales => ({
-                ...credenciales, 
-                [event.target.name]:event.target.value,
-            }))    
-         } ;
-         
+
+        const handleChange = async () => {
+            try  {
+                const [errors, correct] = validacionSignUp(credenciales)
+                setErrores(errors)
+                if (correct ) {
+                    const api_response = await newUser(credenciales)
+                        if(api_response.status === 200){
+                            const {data} = api_response.
+                            setCredenciales (data)
+                            console.log(credenciales)
+                        }
+                    }console.log(errors, correct)
+                }catch (error) {
+                    console.log("error en registro")
+                }
     return (
         <div className='container'>
         <Formik > 
@@ -30,12 +45,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
                         <div className="form-group col-md-6 mb-3">
                                 <label htmlFor="useremail">Email</label>
                                 <Field 
-                                    type="email" 
                                     className="form-control" 
-                                    name="usermail" 
-                                    value={useremail} 
-                                    onChange = {handleChange}
-                                    placeholder="tys@ejemplo.com"/>
+                                    onChange = {value => setCredenciales ({ ...credenciales, "useremail": value})}
+                                    placeholder="tys@ejemplo.com"
+                                    erroresMessage={errores.useremail}/>
                             </div>
                         </div>
 
@@ -43,21 +56,20 @@ import 'bootstrap/dist/css/bootstrap.min.css';
                             <div className="form-group col-md-6 mb-3">
                                 <label htmlFor="password">Contraseña</label>
                                 <Field 
-                                    type="password"
                                     className="form-control" 
                                     name="password"
-                                    value={password} 
-                                    onChange = {handleChange} 
-                                    placeholder="***********"/>
+                                    onChange = {value => setCredenciales({...credenciales, 'password': value})}
+                                    placeholder="***********"
+                                    errorMessage={errores.password}
+                                    />
+
                             </div>
                         </div>
                          <br />
                     <div className="form-group">
                         <button 
                             type="submit" 
-                            variant="primary" 
-                            className="btn btn-secondary"
-                            disabled= {useremail || !password} >
+                            onClick={handleChange} >
                             Enviar
                         </button>
                     </div>
@@ -70,5 +82,5 @@ import 'bootstrap/dist/css/bootstrap.min.css';
         </div>
     )};
 
-
+    }
 export default Login;

@@ -2,11 +2,14 @@ import Accordion from 'react-bootstrap/Accordion';
 import { useState, useEffect} from 'react'
 import { getVehicles } from '../../api/Model/Vehicle';
 import {handleFetchError} from '../../utils/errorhandler';
-//import { Vehicle } from '../../components/Vehicle';
+import { Vehicle } from '../../components/Vehicle';
+
+
 const  ListaCamiones1 = () => {
   const [Loading, setLoading] = useState (false)
   const [error, setError] = useState ('')
   const [vehicles, setVehicles] = useState([])
+
   const handleFetchVehicles = async() => {
     setLoading(true)
   try {
@@ -32,15 +35,15 @@ const  ListaCamiones1 = () => {
   if(Loading){return (<>Loading..</>)}
   if(error){return (<>{error}</>)}
 
-  const handleClick = (aux) => {console.log(aux)}
+ 
   return (
     <Accordion defaultActiveKey={['0']} 
     alwaysOpen>
        {vehicles.map((vehicle,index)  =>( 
-          <Accordion.Item eventKey={index} key={index} onClick ={() =>handleClick('index')}>
-            <Accordion.Header>VEHICULO {vehicle.id}</Accordion.Header>
+          <Accordion.Item eventKey={index} key={index} >
+            <Accordion.Header> <h5 className='fw-semibold'>VEHICULO  {vehicle.id} </h5></Accordion.Header>
             <Accordion.Body>
-              <p>{vehicle.numChasis}</p>
+            <Vehicle key={vehicle.id} {...vehicle}/>
             </Accordion.Body>
           </Accordion.Item>
         ))}
